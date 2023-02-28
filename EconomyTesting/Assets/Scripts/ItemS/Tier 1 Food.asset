@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 1 Food
   itemType: Food
-  minValue: 0
-  maxValue: 0
+  minValue: 3
+  maxValue: 9

@@ -114,4 +114,56 @@ public class UpgradeButton : MonoBehaviour
 
         }
     }
+
+    public void UpgradeReset()
+    {
+        upgradeTier = 0;
+
+        gameMgr.itemFiveText.gameObject.SetActive(false);
+        gameMgr.itemSixText.gameObject.SetActive(false);
+        gameMgr.itemTextList.Remove(gameMgr.itemFiveText);
+        gameMgr.itemTextList.Remove(gameMgr.itemSixText);
+
+        gameMgr.itemList.Remove(gameMgr.itemFive);
+        gameMgr.itemList.Remove(gameMgr.itemSix);
+
+        gameMgr.itemSevenText.gameObject.SetActive(false);
+        gameMgr.itemEightText.gameObject.SetActive(false);
+        gameMgr.itemTextList.Remove(gameMgr.itemSevenText);
+        gameMgr.itemTextList.Remove(gameMgr.itemEightText);
+
+        gameMgr.itemList.Remove(gameMgr.itemSeven);
+        gameMgr.itemList.Remove(gameMgr.itemEight);
+
+        gameMgr.itemNineText.gameObject.SetActive(false);
+        gameMgr.itemTenText.gameObject.SetActive(false);
+        gameMgr.itemTextList.Remove(gameMgr.itemNineText);
+        gameMgr.itemTextList.Remove(gameMgr.itemTenText);
+
+
+        gameMgr.itemList.Remove(gameMgr.itemNine);
+        gameMgr.itemList.Remove(gameMgr.itemTen);
+
+        gameMgr.itemElevenText.gameObject.SetActive(false);
+        gameMgr.itemTwelveText.gameObject.SetActive(false);
+        gameMgr.itemTextList.Remove(gameMgr.itemElevenText);
+        gameMgr.itemTextList.Remove(gameMgr.itemTwelveText);
+
+        gameMgr.itemList.Remove(gameMgr.itemEleven);
+        gameMgr.itemList.Remove(gameMgr.itemTwelve);
+
+        gameMgr.itemThirteenText.gameObject.SetActive(false);
+        gameMgr.itemFourteenText.gameObject.SetActive(false);
+        gameMgr.itemFifthteenText.gameObject.SetActive(false);
+        gameMgr.itemSixteenText.gameObject.SetActive(false);
+        gameMgr.itemTextList.Remove(gameMgr.itemThirteenText);
+        gameMgr.itemTextList.Remove(gameMgr.itemFourteenText);
+        gameMgr.itemTextList.Remove(gameMgr.itemFifthteenText);
+        gameMgr.itemTextList.Remove(gameMgr.itemSixteenText);
+
+        gameMgr.itemList.Remove(gameMgr.itemThirteen);
+        gameMgr.itemList.Remove(gameMgr.itemFourteen);
+        gameMgr.itemList.Remove(gameMgr.itemFifthteen);
+        gameMgr.itemList.Remove(gameMgr.itemSixteen);
+    }
 }

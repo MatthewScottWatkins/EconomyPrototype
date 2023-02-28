@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 2 Armour
   itemType: Armour
-  minValue: 0
-  maxValue: 0
+  minValue: 34
+  maxValue: 53

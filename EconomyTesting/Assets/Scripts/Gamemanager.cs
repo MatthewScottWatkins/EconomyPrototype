@@ -19,9 +19,18 @@ public class Gamemanager : MonoBehaviour
     public int dropChance;
     public int dropBonus;
 
+    #region Taxes
+    public int fatherTax;
+    public int motherTax;
+    public int sisterTax;
+    public int brotherTax;
+    public int goblinCaveTax;
+    #endregion Taxes
+
     public TextMeshProUGUI goldCountText;
     public TextMeshProUGUI dayCountText;
     public TextMeshProUGUI upgradeCostText;
+    public TextMeshProUGUI goldGainedText;
 
     public List<TextMeshProUGUI> itemTextList = new List<TextMeshProUGUI>();
     #region ItemtextObjects
@@ -67,6 +76,9 @@ public class Gamemanager : MonoBehaviour
 
     public List<ItemScriptableObject> itemList = new List<ItemScriptableObject>();
 
+    public GameObject loseScreen;
+    public GameObject restartButton;
+
     private void Awake()
     {
         //item objects
@@ -95,5 +107,19 @@ public class Gamemanager : MonoBehaviour
         goldCountText.text = goldCount.ToString() + "g";
         dayCountText.text = "Day " + dayCount.ToString();
         upgradeCostText.text = upgradeCost.ToString() + "g";
+
+        if (goldCount <= 0)
+        {
+            loseScreen.SetActive(true);
+        }
+    }
+
+    public void RestartGame()
+    {
+        loseScreen.SetActive(false);
+        goldCount = startingGoldCount;
+        dayCount = 1;
+        inventorySlots = 4;
+        upgradeCost = 100;
     }
 }

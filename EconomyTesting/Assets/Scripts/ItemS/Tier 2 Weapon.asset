@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 2 Weapon
   itemType: Weapon
-  minValue: 0
-  maxValue: 0
+  minValue: 33
+  maxValue: 55

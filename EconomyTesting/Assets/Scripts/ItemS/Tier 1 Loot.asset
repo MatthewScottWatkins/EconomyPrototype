@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 1 Loot
   itemType: Loot
-  minValue: 0
-  maxValue: 0
+  minValue: 1
+  maxValue: 10

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 1 Valuable
   itemType: Valuable
-  minValue: 0
-  maxValue: 0
+  minValue: 15
+  maxValue: 30

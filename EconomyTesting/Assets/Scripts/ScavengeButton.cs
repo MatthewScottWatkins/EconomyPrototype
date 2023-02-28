@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScavengeButton : MonoBehaviour
 {
     public Gamemanager gameMgr;
     public int itemsFound = 0;
     public int item;
+
+    public GameObject MoneyMakerButton;
+
     public void Scavenge()
     {
         for(int i = 0; i < gameMgr.inventorySlots; i++)
@@ -142,5 +146,7 @@ public class ScavengeButton : MonoBehaviour
         }
 
         itemsFound = 0;
+        gameObject.GetComponent<Button>().interactable= false;
+        MoneyMakerButton.GetComponent<Button>().interactable = true;
     }
 }
