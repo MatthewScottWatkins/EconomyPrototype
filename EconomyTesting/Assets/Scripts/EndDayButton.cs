@@ -13,5 +13,7 @@ public class EndDayButton : MonoBehaviour
         gameMgr.dayCount++;
         gameMgr.goldCount -= (gameMgr.fatherTax + gameMgr.motherTax + gameMgr.sisterTax + gameMgr.brotherTax + gameMgr.goblinCaveTax);
         scavengeButton.GetComponent<Button>().interactable = true;
+        gameObject.GetComponent<Button>().interactable = false;
+        gameMgr.CheckForDeath();
     }
 }

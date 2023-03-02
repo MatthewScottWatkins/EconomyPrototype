@@ -10,6 +10,7 @@ public class ScavengeButton : MonoBehaviour
     public int item;
 
     public GameObject MoneyMakerButton;
+    public GameObject upgradeButton;
 
     public void Scavenge()
     {
@@ -17,10 +18,13 @@ public class ScavengeButton : MonoBehaviour
         {
             item = Random.Range(0, gameMgr.amountOfItems);
 
+            gameMgr.upgradeNo = true;
+
             if (item > gameMgr.dropChance)
             {
-                item = - -(Random.Range(0, gameMgr.dropChance) + gameMgr.dropBonus);
+                item += gameMgr.dropBonus;
             }
+
             switch (itemsFound)
             {
                 case 0:
@@ -147,6 +151,7 @@ public class ScavengeButton : MonoBehaviour
 
         itemsFound = 0;
         gameObject.GetComponent<Button>().interactable= false;
+        upgradeButton.GetComponent<Button>().interactable = false;
         MoneyMakerButton.GetComponent<Button>().interactable = true;
     }
 }
