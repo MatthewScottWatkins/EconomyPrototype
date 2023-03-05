@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
-    public Gamemanager gameMgr;
+    private Gamemanager gameMgr;
 
     public int upgradeTier = 0;
     public float timer = 0;
     public bool timerOn = false;
 
-    public List<int> upgradeBuyDays;
-
     public GameObject youreBadText;
 
+    private void Awake()
+    {
+        gameMgr = FindObjectOfType<Gamemanager>();
+    }
     private void Update()
     {
         if (gameMgr.goldCount < gameMgr.upgradeCost || gameMgr.upgradeNo == true) { gameObject.GetComponent<Button>().interactable = false; }
@@ -37,10 +36,8 @@ public class UpgradeButton : MonoBehaviour
         {
                 case 0:
             {
-                    if (!CheckForTaxSafety())
-                    {
-                        break;
-                    }
+                    if (!CheckForTaxSafety()) { break; }
+
                     upgradeTier = 1;
                     gameMgr.upgradeCost = 500;
                     gameMgr.goldCount -= 100;
@@ -54,16 +51,14 @@ public class UpgradeButton : MonoBehaviour
                     gameMgr.itemList.Add(gameMgr.itemFive);
                     gameMgr.itemList.Add(gameMgr.itemSix);
 
-                    upgradeBuyDays.Add(gameMgr.dayCount);
+                    gameMgr.upgradeBuyDaysList.Add(gameMgr.dayCount);
 
                         break;
             }
                 case 1:
             {
-                    if (!CheckForTaxSafety())
-                    {
-                        break;
-                    }
+                    if (!CheckForTaxSafety()) { break; }
+
                     upgradeTier = 2;
                     gameMgr.upgradeCost = 1000;
                     gameMgr.goldCount -= 500;
@@ -77,16 +72,14 @@ public class UpgradeButton : MonoBehaviour
                     gameMgr.itemList.Add(gameMgr.itemSeven);
                     gameMgr.itemList.Add(gameMgr.itemEight);
 
-                    upgradeBuyDays.Add(gameMgr.dayCount);
+                    gameMgr.upgradeBuyDaysList.Add(gameMgr.dayCount);
 
                     break;
             }
                 case 2:
             {
-                    if (!CheckForTaxSafety())
-                    {
-                        break;
-                    }
+                    if (!CheckForTaxSafety()) { break; }
+
                     upgradeTier = 3;
                     gameMgr.upgradeCost = 2000;
                     gameMgr.goldCount -= 1000;
@@ -102,64 +95,58 @@ public class UpgradeButton : MonoBehaviour
                     gameMgr.itemList.Add(gameMgr.itemTen);
 
 
-                    upgradeBuyDays.Add(gameMgr.dayCount);
+                    gameMgr.upgradeBuyDaysList.Add(gameMgr.dayCount);
 
                     break;
             }
                 case 3:
-                {
-                    if (!CheckForTaxSafety())
-                    {
-                        break;
-                    }
-                    upgradeTier = 4;
-                    gameMgr.upgradeCost = 3000;
-                    gameMgr.goldCount -= 2000;
-                    gameMgr.inventorySlots = 12;
+            {
+                if (!CheckForTaxSafety()) { break; }
 
-                    gameMgr.itemElevenText.gameObject.SetActive(true);
-                    gameMgr.itemTwelveText.gameObject.SetActive(true);
-                    gameMgr.itemTextList.Add(gameMgr.itemElevenText);
-                    gameMgr.itemTextList.Add(gameMgr.itemTwelveText);
+                upgradeTier = 4;
+                gameMgr.upgradeCost = 3000;
+                gameMgr.goldCount -= 2000;
+                gameMgr.inventorySlots = 12;
 
-                    gameMgr.itemList.Add(gameMgr.itemEleven);
-                    gameMgr.itemList.Add(gameMgr.itemTwelve);
+                gameMgr.itemElevenText.gameObject.SetActive(true);
+                gameMgr.itemTwelveText.gameObject.SetActive(true);
+                gameMgr.itemTextList.Add(gameMgr.itemElevenText);
+                gameMgr.itemTextList.Add(gameMgr.itemTwelveText);
 
-                    upgradeBuyDays.Add(gameMgr.dayCount);
+                gameMgr.itemList.Add(gameMgr.itemEleven);
+                gameMgr.itemList.Add(gameMgr.itemTwelve);
 
-                    break;
-                }
+                gameMgr.upgradeBuyDaysList.Add(gameMgr.dayCount);
+
+                break;
+            }
             case 4:
-                {
-                    if (!CheckForTaxSafety())
-                    {
-                        break;
-                    }
-                    upgradeTier = 5;
-                    gameMgr.goldCount -= 3000;
-                    gameMgr.inventorySlots = 16;
+            {
+                if (!CheckForTaxSafety()) { break; }
+                upgradeTier = 5;
+                gameMgr.goldCount -= 3000;
+                gameMgr.inventorySlots = 16;
 
-                    gameMgr.itemThirteenText.gameObject.SetActive(true);
-                    gameMgr.itemFourteenText.gameObject.SetActive(true);
-                    gameMgr.itemFifthteenText.gameObject.SetActive(true);
-                    gameMgr.itemSixteenText.gameObject.SetActive(true);
-                    gameMgr.itemTextList.Add(gameMgr.itemThirteenText);
-                    gameMgr.itemTextList.Add(gameMgr.itemFourteenText);
-                    gameMgr.itemTextList.Add(gameMgr.itemFifthteenText);
-                    gameMgr.itemTextList.Add(gameMgr.itemSixteenText);
+                gameMgr.itemThirteenText.gameObject.SetActive(true);
+                gameMgr.itemFourteenText.gameObject.SetActive(true);
+                gameMgr.itemFifthteenText.gameObject.SetActive(true);
+                gameMgr.itemSixteenText.gameObject.SetActive(true);
+                gameMgr.itemTextList.Add(gameMgr.itemThirteenText);
+                gameMgr.itemTextList.Add(gameMgr.itemFourteenText);
+                gameMgr.itemTextList.Add(gameMgr.itemFifthteenText);
+                gameMgr.itemTextList.Add(gameMgr.itemSixteenText);
 
-                    gameMgr.itemList.Add(gameMgr.itemThirteen);
-                    gameMgr.itemList.Add(gameMgr.itemFourteen);
-                    gameMgr.itemList.Add(gameMgr.itemFifthteen);
-                    gameMgr.itemList.Add(gameMgr.itemSixteen);
+                gameMgr.itemList.Add(gameMgr.itemThirteen);
+                gameMgr.itemList.Add(gameMgr.itemFourteen);
+                gameMgr.itemList.Add(gameMgr.itemFifthteen);
+                gameMgr.itemList.Add(gameMgr.itemSixteen);
 
-                    upgradeBuyDays.Add(gameMgr.dayCount);
+                gameMgr.upgradeBuyDaysList.Add(gameMgr.dayCount);
 
-                    gameObject.SetActive(false);
+                gameObject.SetActive(false);
 
-                    break;
-                }
-
+                break;
+            }
         }
         gameMgr.CheckForDeath();
     }
@@ -228,6 +215,7 @@ public class UpgradeButton : MonoBehaviour
             gameMgr.itemList.Remove(gameMgr.itemSixteen);
         }
 
+        gameMgr.upgradeBuyDaysList.Clear();
         upgradeTier = 0;
     }
 

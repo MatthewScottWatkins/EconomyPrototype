@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Tier 1 Loot
   itemType: Loot
   minValue: 1
-  maxValue: 10
+  maxValue: 6

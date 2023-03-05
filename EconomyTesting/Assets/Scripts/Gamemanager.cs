@@ -1,25 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class Gamemanager : MonoBehaviour
 {
+    #region Counts
+    [Header("Counts")]
     public int goldCount;
-
     public int startingGoldCount;
-
     public int dayCount;
+    #endregion Counts
 
     public int upgradeCost;
-
     public int inventorySlots;
 
     public int dropChance;
     public int dropBonus;
 
     #region Taxes
+    [Header("Taxes")]
     public int fatherTax;
     public int motherTax;
     public int sisterTax;
@@ -28,14 +27,16 @@ public class Gamemanager : MonoBehaviour
     public int allTax;
     #endregion Taxes
 
+    #region TextObjects
+    [Header("Text Objects")]
     public TextMeshProUGUI goldCountText;
     public TextMeshProUGUI dayCountText;
     public TextMeshProUGUI upgradeCostText;
     public TextMeshProUGUI goldGainedText;
+    #endregion TextObjects
 
-    public List<TextMeshProUGUI> itemTextList = new List<TextMeshProUGUI>();
-
-    #region ItemtextObjects
+    #region ItemTextObjects
+    [Header("Item Text Objects")]
     public TextMeshProUGUI itemOneText;
     public TextMeshProUGUI itemTwoText;
     public TextMeshProUGUI itemThreeText;
@@ -54,10 +55,18 @@ public class Gamemanager : MonoBehaviour
     public TextMeshProUGUI itemSixteenText;
     #endregion ItemTextObjects
 
-    public ItemScriptableObject[] possibleItems;
-    public int amountOfItems;
+    #region Lists
+    [Header("Lists")]
+    public List<ItemScriptableObject> itemList = new List<ItemScriptableObject>();
+    public List<TextMeshProUGUI> itemTextList = new List<TextMeshProUGUI>();
+    public List<int> goldValuesList;
+    public List<string> itemTypesSoldList;
+    public List<int> goldPerDayList;
+    public List<int> upgradeBuyDaysList;
+    #endregion Lists
 
     #region ItemObjects
+    [Header("Item Objects")]
     public ItemScriptableObject itemOne;
     public ItemScriptableObject itemTwo;
     public ItemScriptableObject itemThree;
@@ -76,13 +85,21 @@ public class Gamemanager : MonoBehaviour
     public ItemScriptableObject itemSixteen;
     #endregion ItemObjects
 
-    public List<ItemScriptableObject> itemList = new List<ItemScriptableObject>();
+    public ItemScriptableObject[] possibleItems;
+    public int amountOfItems;
 
     public GameObject loseScreen;
+
+    #region Checks
     public bool upgradeNo;
+    #endregion Checks
+
+    public ButtonsList buttonsList;
 
     private void Awake()
     {
+        buttonsList = FindObjectOfType<ButtonsList>();
+
         //item objects
         itemList.Add(itemOne);
         itemList.Add(itemTwo);

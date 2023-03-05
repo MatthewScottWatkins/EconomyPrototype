@@ -5,45 +5,44 @@ using UnityEngine.UI;
 
 public class MoneyMakerButton : MonoBehaviour
 {
-    public Gamemanager gameMgr;
+    private Gamemanager gameMgr;
     private int goldValue;
-    public List<int> goldValues;
-    public List<string> itemTypesSold;
-    public List<int> goldPerDay;
-    public int totalGoldValue;
-    
-    public GameObject nextDayButton;
-    public GameObject upgradeButton;
+    private int totalGoldValue;
+
+    private void Awake()
+    {
+        gameMgr = FindObjectOfType<Gamemanager>();
+    }
 
     public void MakeMoney()
     {
         gameMgr.upgradeNo = false;
 
         totalGoldValue = 0;
-        goldValues.Clear();
-        itemTypesSold.Clear();
+        gameMgr.goldValuesList.Clear();
+        gameMgr.itemTypesSoldList.Clear();
 
         for (int i = 0; i < gameMgr.inventorySlots; i++)
         {
             goldValue = Random.Range(gameMgr.itemList[i].minValue, gameMgr.itemList[i].maxValue);
-            itemTypesSold.Add(gameMgr.itemList[i].itemType);
+            gameMgr.itemTypesSoldList.Add(gameMgr.itemList[i].itemType);
 
             gameMgr.goldCount += goldValue;
 
             gameMgr.itemTextList[i].text = "Empty";
             gameMgr.itemList[i] = null;
 
-            goldValues.Add(goldValue);
+            gameMgr.goldValuesList.Add(goldValue);
 
             totalGoldValue += goldValue;
         }
 
-        goldPerDay.Add(totalGoldValue);
+        gameMgr.goldPerDayList.Add(totalGoldValue);
 
         gameMgr.goldGainedText.text = "+" + totalGoldValue.ToString() + "g";
 
         gameObject.GetComponent<Button>().interactable= false;
-        nextDayButton.GetComponent<Button>().interactable = true;
-        upgradeButton.GetComponent<Button>().interactable = true;
+        gameMgr.buttonsList.endDayButton.interactable = true;
+        gameMgr.buttonsList.upgradeButton.interactable = true;
     }
 }

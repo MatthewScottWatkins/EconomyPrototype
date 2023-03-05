@@ -1,29 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ScavengeButton : MonoBehaviour
 {
-    public Gamemanager gameMgr;
-    public int itemsFound = 0;
-    public int item;
+    private Gamemanager gameMgr;
+    private int itemsFound = 0;
+    private int item;
+    public int randomValue;
+    public List<int> randomValuesList= new List<int>();
 
-    public GameObject MoneyMakerButton;
-    public GameObject upgradeButton;
+    private void Awake()
+    {
+        gameMgr = FindObjectOfType<Gamemanager>();
+    }
 
     public void Scavenge()
     {
+        randomValuesList.Clear();
+
         for(int i = 0; i < gameMgr.inventorySlots; i++)
         {
             item = Random.Range(0, gameMgr.amountOfItems);
+            item += gameMgr.dropBonus;
+
+            randomValue = Random.Range(0, 10);
+
+            randomValuesList.Add(randomValue);
+
+            if (randomValue >= 5)
+            {
+                item -= gameMgr.dropChance;
+
+                if (item < 0) { item = 0; }
+            }
 
             gameMgr.upgradeNo = true;
-
-            if (item > gameMgr.dropChance)
-            {
-                item += gameMgr.dropBonus;
-            }
 
             switch (itemsFound)
             {
@@ -151,7 +163,7 @@ public class ScavengeButton : MonoBehaviour
 
         itemsFound = 0;
         gameObject.GetComponent<Button>().interactable= false;
-        upgradeButton.GetComponent<Button>().interactable = false;
-        MoneyMakerButton.GetComponent<Button>().interactable = true;
+        gameMgr.buttonsList.upgradeButton.interactable = false;
+        gameMgr.buttonsList.moneyMakerButton.interactable = true;
     }
 }

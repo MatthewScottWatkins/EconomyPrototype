@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class StartButton : MonoBehaviour
 {
-    public GameObject scavengeButton;
-    public GameObject upgradeButton;
-    public GameObject moneyMakerButton;
-    public GameObject endDayButton;
+    private Gamemanager gameMgr;
 
+    private void Start()
+    {
+        gameMgr = FindObjectOfType<Gamemanager>();
+    }
     public void StartDay()
     {
         gameObject.SetActive(false);
-        scavengeButton.SetActive(true);
-        upgradeButton.SetActive(true);
-        moneyMakerButton.SetActive(true);
-        endDayButton.SetActive(true);
+        gameMgr.buttonsList.scavengeButton.gameObject.SetActive(true);
+        gameMgr.buttonsList.upgradeButton.gameObject.SetActive(true);
+        gameMgr.buttonsList.moneyMakerButton.gameObject.SetActive(true);
+        gameMgr.buttonsList.endDayButton.gameObject.SetActive(true);
     }
 }
