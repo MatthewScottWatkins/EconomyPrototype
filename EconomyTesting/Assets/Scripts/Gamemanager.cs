@@ -118,7 +118,6 @@ public class Gamemanager : MonoBehaviour
         goldCount = startingGoldCount;
         dayCount = 1;
         amountOfItems = possibleItems.Length - 1;
-
     }
 
     private void Update()

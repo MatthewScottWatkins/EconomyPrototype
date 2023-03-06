@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Tier 2 Food
   itemType: Food
   minValue: 17
-  maxValue: 31
+  maxValue: 25

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Tier 1 Artwork
   itemType: Artwork
-  minValue: 4
-  maxValue: 13
+  minValue: 8
+  maxValue: 15
