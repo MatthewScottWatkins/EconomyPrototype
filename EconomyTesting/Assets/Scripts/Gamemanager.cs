@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class Gamemanager : MonoBehaviour
 {
+    #region Varaibles
     #region Counts
     [Header("Counts")]
     public int goldCount;
@@ -65,6 +67,13 @@ public class Gamemanager : MonoBehaviour
     public List<int> upgradeBuyDaysList;
     #endregion Lists
 
+    public int typeLoot;
+    public int typeValuable;
+    public int typeWeapon;
+    public int typeArmour;
+    public int typeArtwork;
+    public int typeFood;
+
     #region ItemObjects
     [Header("Item Objects")]
     public ItemScriptableObject itemOne;
@@ -95,10 +104,14 @@ public class Gamemanager : MonoBehaviour
     #endregion Checks
 
     public ButtonsList buttonsList;
+    public DataWriter dataWriter;
+    #endregion Variables
 
+    #region Functions
     private void Awake()
     {
         buttonsList = FindObjectOfType<ButtonsList>();
+        dataWriter = FindObjectOfType<DataWriter>();
 
         //item objects
         itemList.Add(itemOne);
@@ -135,6 +148,8 @@ public class Gamemanager : MonoBehaviour
         dayCount = 1;
         inventorySlots = 4;
         upgradeCost = 100;
+        goldPerDayList.Clear();
+        upgradeBuyDaysList.Clear();
     }
 
     public void CheckForDeath()
@@ -144,4 +159,43 @@ public class Gamemanager : MonoBehaviour
             loseScreen.SetActive(true);
         }
     }
+
+    public void CheckItemType(ItemScriptableObject item)
+    {
+        switch (item.itemType)
+        {
+            case ItemType.Loot:
+                {
+                    typeLoot++;
+                    break;
+                }
+            case ItemType.Armour:
+                {
+                    typeArmour++;
+                    break;
+                }
+            case ItemType.Artwork:
+                {
+                    typeArtwork++;
+                    break;
+                }
+            case ItemType.Weapon:
+                {
+                    typeWeapon++;
+                    break;
+                }
+            case ItemType.Valauble:
+                {
+                    typeValuable++;
+                    break;
+                }
+            case ItemType.Food:
+                {
+                    typeFood++;
+                    break;
+                }
+        }
+    }
+
+    #endregion Functions
 }

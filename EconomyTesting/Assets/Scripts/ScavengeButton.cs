@@ -35,6 +35,13 @@ public class ScavengeButton : MonoBehaviour
                 if (item < 0) { item = 0; }
             }
 
+            if (gameMgr.dayCount < 5)
+            {
+                item += gameMgr.dropBonus;
+
+                if(item > gameMgr.amountOfItems) { item = gameMgr.amountOfItems;}
+            }
+
             gameMgr.upgradeNo = true;
 
             switch (itemsFound)

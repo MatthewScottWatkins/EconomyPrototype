@@ -9,9 +9,12 @@ public class MoneyMakerButton : MonoBehaviour
     private int goldValue;
     private int totalGoldValue;
 
+    public DataWriter dataWriter;
+
     private void Awake()
     {
         gameMgr = FindObjectOfType<Gamemanager>();
+        dataWriter = FindObjectOfType<DataWriter>();
     }
 
     public void MakeMoney()
@@ -25,7 +28,8 @@ public class MoneyMakerButton : MonoBehaviour
         for (int i = 0; i < gameMgr.inventorySlots; i++)
         {
             goldValue = Random.Range(gameMgr.itemList[i].minValue, gameMgr.itemList[i].maxValue);
-            gameMgr.itemTypesSoldList.Add(gameMgr.itemList[i].itemType);
+            gameMgr.itemTypesSoldList.Add(gameMgr.itemList[i].itemType.ToString());
+            gameMgr.CheckItemType(gameMgr.itemList[i]);
 
             gameMgr.goldCount += goldValue;
 
@@ -38,6 +42,8 @@ public class MoneyMakerButton : MonoBehaviour
         }
 
         gameMgr.goldPerDayList.Add(totalGoldValue);
+
+        dataWriter.CreateText(totalGoldValue);
 
         gameMgr.goldGainedText.text = "+" + totalGoldValue.ToString() + "g";
 

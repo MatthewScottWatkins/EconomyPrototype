@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tier 1 Armour
   m_EditorClassIdentifier: 
   itemName: Tier 1 Armour
-  itemType: Armour
+  itemType: 1
   minValue: 13
   maxValue: 28

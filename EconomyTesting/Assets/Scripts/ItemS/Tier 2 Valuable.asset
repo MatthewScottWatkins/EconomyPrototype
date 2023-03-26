@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tier 2 Valuable
   m_EditorClassIdentifier: 
   itemName: Tier 2 Valuable
-  itemType: Valuable
+  itemType: 2
   minValue: 34
   maxValue: 68

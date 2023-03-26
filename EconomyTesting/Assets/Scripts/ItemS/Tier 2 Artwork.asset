@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tier 2 Artwork
   m_EditorClassIdentifier: 
   itemName: Tier 2 Artwork
-  itemType: Artwork
+  itemType: 4
   minValue: 29
   maxValue: 45
