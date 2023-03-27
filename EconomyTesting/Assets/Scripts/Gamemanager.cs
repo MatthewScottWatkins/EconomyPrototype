@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using JetBrains.Annotations;
 
+enum FamilyMember { father, mother, sister, brother }
 
 public class Gamemanager : MonoBehaviour
 {
@@ -27,11 +29,20 @@ public class Gamemanager : MonoBehaviour
     public int brotherTax;
     public int goblinCaveTax;
     public int allTax;
+
+
+    FamilyMember familyMember;
+    string familyUpdate;
+    public GameObject infoPrefab;
+    public GameObject infoPanel;
+    public GameObject infoPanelParent;
+    public GameObject infoPanelNotification;
     #endregion Taxes
 
     #region TextObjects
     [Header("Text Objects")]
     public TextMeshProUGUI goldCountText;
+    public TextMeshProUGUI currentTaxText;
     public TextMeshProUGUI dayCountText;
     public TextMeshProUGUI upgradeCostText;
     public TextMeshProUGUI goldGainedText;
@@ -99,6 +110,7 @@ public class Gamemanager : MonoBehaviour
 
     public GameObject loseScreen;
 
+
     #region Checks
     public bool upgradeNo;
     #endregion Checks
@@ -136,6 +148,7 @@ public class Gamemanager : MonoBehaviour
     private void Update()
     {
         goldCountText.text = goldCount.ToString() + "g";
+        currentTaxText.text = "-" + allTax.ToString() + "g";
         dayCountText.text = "Day " + dayCount.ToString();
         upgradeCostText.text = upgradeCost.ToString() + "g";
         allTax = fatherTax + motherTax + brotherTax + sisterTax + goblinCaveTax;
@@ -157,6 +170,82 @@ public class Gamemanager : MonoBehaviour
         if (goldCount <= 0)
         {
             loseScreen.SetActive(true);
+        }
+    }
+
+    public void UpdateTaxes()
+    {
+        if (dayCount == 10 || dayCount == 20 || dayCount == 30 || dayCount == 40 || dayCount == 50)
+        {
+
+            string familyMemeberChosen = "";
+            int taxIncrease = 0;
+
+            taxIncrease = Random.Range(1, 12);
+            int familyIndex = 0;
+
+            familyIndex = Random.Range(0, 3);
+
+            switch (familyIndex)
+            {
+                case 0:
+                    {
+                        familyMember = FamilyMember.sister;
+                        break;
+                    }
+                case 1:
+                    {
+                        familyMember = FamilyMember.mother;
+                        break;
+                    }
+                case 2:
+                    {
+                        familyMember = FamilyMember.brother;
+                        break;
+                    }
+                case 3:
+                    {
+                        familyMember = FamilyMember.father;
+                        break;
+                    }
+            }
+            switch (familyMember)
+            {
+                case FamilyMember.sister:
+                    {
+                        familyMemeberChosen = "Your Sister ";
+                        sisterTax += taxIncrease;
+                        break;
+                    }
+                case FamilyMember.mother:
+                    {
+                        familyMemeberChosen = "Your Mother ";
+                        motherTax += taxIncrease;
+                        break;
+                    }
+                case FamilyMember.brother:
+                    {
+                        familyMemeberChosen = "Your Brother ";
+                        brotherTax += taxIncrease;
+                        break;
+                    }
+                case FamilyMember.father:
+                    {
+                        familyMemeberChosen = "Your Father ";
+                        fatherTax += taxIncrease;
+                        break;
+                    }
+            }
+
+            familyUpdate = familyMemeberChosen + "has increased their gold needs by: " + taxIncrease.ToString();
+
+            GameObject clone;
+
+            infoPanelNotification.SetActive(true);
+
+            clone = Instantiate(infoPrefab, infoPanel.transform);
+
+            clone.GetComponent<TextUpdater>().infoText.text = familyUpdate;
         }
     }
 

@@ -19,5 +19,7 @@ public class EndDayButton : MonoBehaviour
         gameMgr.buttonsList.scavengeButton.interactable = true;
         gameObject.GetComponent<Button>().interactable = false;
         gameMgr.CheckForDeath();
+
+        gameMgr.UpdateTaxes();
     }
 }

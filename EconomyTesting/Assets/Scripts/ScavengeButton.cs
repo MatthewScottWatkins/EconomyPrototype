@@ -22,25 +22,25 @@ public class ScavengeButton : MonoBehaviour
         for(int i = 0; i < gameMgr.inventorySlots; i++)
         {
             item = Random.Range(0, gameMgr.amountOfItems);
-            item += gameMgr.dropBonus;
 
             randomValue = Random.Range(0, 10);
 
             randomValuesList.Add(randomValue);
 
-            if (randomValue >= 5)
+            if (gameMgr.dayCount < 5 || randomValue < 2)
+            {
+                item += gameMgr.dropBonus;
+
+                if (item > gameMgr.amountOfItems) { item -= gameMgr.dropChance; }
+            }
+            else if (randomValue >= 5 && gameMgr.dayCount > 4)
             {
                 item -= gameMgr.dropChance;
 
                 if (item < 0) { item = 0; }
             }
 
-            if (gameMgr.dayCount < 5)
-            {
-                item += gameMgr.dropBonus;
-
-                if(item > gameMgr.amountOfItems) { item = gameMgr.amountOfItems;}
-            }
+            Debug.Log(item);
 
             gameMgr.upgradeNo = true;
 
@@ -168,6 +168,7 @@ public class ScavengeButton : MonoBehaviour
             }
         }
 
+        item = 0;
         itemsFound = 0;
         gameObject.GetComponent<Button>().interactable= false;
         gameMgr.buttonsList.upgradeButton.interactable = false;
